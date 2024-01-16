@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../Components/OAuth";
 
@@ -13,7 +13,7 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     });
   };
-  const SubmitHandler = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
@@ -25,6 +25,7 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data);
       if (data.success === false) {
         setLoading(false);
         setError(data.message);
@@ -41,7 +42,7 @@ export default function SignUp() {
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
-      <form onSubmit={SubmitHandler} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="username"
@@ -51,7 +52,7 @@ export default function SignUp() {
         />
         <input
           type="email"
-          placeholder="example@gmail.com"
+          placeholder="email"
           className="border p-3 rounded-lg"
           id="email"
           onChange={handleChange}
@@ -71,10 +72,10 @@ export default function SignUp() {
         </button>
         <OAuth />
       </form>
-      <div className="flex gap-1 mt-5">
+      <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
         <Link to={"/sign-in"}>
-          <span className="text-blue-700">Sign In</span>
+          <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
       {error && <p className="text-red-500 mt-5">{error}</p>}
