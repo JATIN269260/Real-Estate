@@ -11,8 +11,10 @@ Follow these steps to set up the project locally:
 1. **Clone the repository:**
 
    ```bash
-   https://github.com/JATIN269260/Star-Wars-Planet.git
-   cd Star-Wars-Planet
+   https://github.com/JATIN269260/Real-Estate.git
+   npm install
+   cd client
+   npm install
    ```
 
 2. **Install dependencies:**
